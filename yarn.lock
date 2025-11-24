@@ -12,11 +12,6 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@arthurrios/biome-config@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@arthurrios/biome-config/-/biome-config-1.1.4.tgz#0cd1776579c19b8be3b04ac74487948081544888"
-  integrity sha512-ehaeoqXE8qyiVvlILNyYBwzJmUlxi2j5ujGSWEXDoGGzpZ8mpe567LQOeEnjVKRQaFEgbpxpBz/9jwc6csp4WA==
-
 "@babel/code-frame@7.10.4", "@babel/code-frame@~7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
