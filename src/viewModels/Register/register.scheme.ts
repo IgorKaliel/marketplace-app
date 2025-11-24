@@ -17,3 +17,5 @@ export const registerScheme = Yup.object().shape({
     .required("Telefone é obrigatório")
     .matches(/^\d{11}$/, "Telefone deve ter 11 digitos ( DDD + Número )"),
 })
+
+export type RegisterFormData = Yup.InferType<typeof registerScheme>
