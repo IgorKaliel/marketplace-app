@@ -1,8 +1,6 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import { useRegisterViewModel } from "./useRegister.viewModel"
-import { AppInput } from "@/shared/components/AppInput"
-import { Controller } from "react-hook-form"
 import { AppInputController } from "@/shared/components/AppInputController"
 
 export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
