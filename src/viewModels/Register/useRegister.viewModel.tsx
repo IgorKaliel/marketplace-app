@@ -16,11 +16,11 @@ export const useRegisterViewModel = () => {
     mode: "onChange",
     resolver: yupResolver(registerScheme),
     defaultValues: {
-      name: "Karol",
-      email: "karol@gmail.com",
-      password: "12345678",
-      confirmPassword: "12345678",
-      phone: "11989781234",
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phone: "",
     },
   })
 
