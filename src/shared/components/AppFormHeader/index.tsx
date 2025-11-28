@@ -6,7 +6,7 @@ interface AuthFormHeaderProps {
   subTitle: string
 }
 
-export const AuthFormHeader = ({ title, subTitle }) => {
+export const AuthFormHeader = ({ title, subTitle }: AuthFormHeaderProps) => {
   return (
     <View className="flex items-center mb-8">
       <Image
