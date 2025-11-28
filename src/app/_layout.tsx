@@ -13,8 +13,8 @@ export default function RootLayout() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="(public)" />
-        <Stack.Screen name="(private)" />
+        <Stack.Screen name="(public)" options={{ headerShown: false }} />
+        <Stack.Screen name="(private)" options={{ headerShown: false }} />
       </Stack>
     </QueryClientProvider>
   )
