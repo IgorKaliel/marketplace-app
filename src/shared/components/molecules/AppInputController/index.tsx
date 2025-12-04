@@ -5,7 +5,7 @@ import {
   FieldValues,
   Path,
 } from "react-hook-form"
-import { AppInput, AppInputProps } from "@/shared/components/AppInput"
+import { AppInput, AppInputProps } from "@/shared/components/organisms/AppInput"
 
 interface AppInputControllerProps<T extends FieldValues>
   extends Omit<AppInputProps, "value" | "onChangeText" | "error"> {
