@@ -1,3 +1,4 @@
+import { AppModal } from "@/shared/components/molecules/AppModal"
 import "@/styles/global.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
@@ -16,6 +17,7 @@ export default function RootLayout() {
         <Stack.Screen name="(public)" />
         <Stack.Screen name="(private)" />
       </Stack>
+      <AppModal />
     </QueryClientProvider>
   )
 }

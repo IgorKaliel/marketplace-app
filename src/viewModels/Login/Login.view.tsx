@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text } from "react-native"
+import { View, Text } from "react-native"
 import { AuthFormHeader } from "@/shared/components/molecules/AppFormHeader"
 import { router } from "expo-router"
 import { KeyboardContainer } from "@/shared/components/organisms/KeyboardContainer"
@@ -24,7 +24,7 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({
             leftIcon="mail-outline"
             label="E-MAIL"
             control={control}
-            placeholder="mail@example.com.br"
+            placeholder="mail@example.com"
             name="email"
           />
 
