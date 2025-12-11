@@ -2,18 +2,31 @@ import { ImagePickerOptions } from "expo-image-picker"
 import { useCallback, useState } from "react"
 import * as ImagePicker from "expo-image-picker"
 import { Toast } from "toastify-react-native"
+import { Alert, Linking } from "react-native"
 
 export const useGallery = (pickerOptions: ImagePickerOptions) => {
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const requestGalleryPermission = useCallback(async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
 
       const currentStatus = status === "granted"
       if (!currentStatus) {
-        Toast.error(
-          "Precisamos da sua permissão para acessar suas fotos",
-          "top"
+        Alert.alert(
+          "Permissão Negada!",
+          "Precisamos de permissão para acessar sua galeria de fotos",
+          [
+            {
+              text: "Cancelar",
+              style: "cancel",
+            },
+            {
+              text: "Abrir configurações",
+              onPress: () => {
+                Linking.openSettings()
+              },
+            },
+          ]
         )
       }
       return currentStatus
@@ -24,7 +37,7 @@ export const useGallery = (pickerOptions: ImagePickerOptions) => {
   }, [])
 
   const openGallery = useCallback(async (): Promise<string | null> => {
-    setLoading(true)
+    setIsLoading(true)
     try {
       const hasPermission = await requestGalleryPermission()
       if (!hasPermission) {
@@ -41,9 +54,9 @@ export const useGallery = (pickerOptions: ImagePickerOptions) => {
       Toast.error("Erro ao selecionar a foto da galeria", "top")
       return null
     } finally {
-      setLoading(false)
+      setIsLoading(false)
     }
   }, [])
 
-  return { openGallery, loading }
+  return { openGallery, isLoading }
 }
