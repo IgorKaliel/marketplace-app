@@ -21,6 +21,7 @@ export interface UserStore {
   setSession: (sessionData: setSessionParams) => void
   logout: () => void
   updateTokens: (updateTokensData: updateTokensParams) => void
+  updateUser: (updatedUserData: Partial<UserInterface>) => void
 }
 
 export const useUserStore = create<UserStore>()(
@@ -39,6 +40,10 @@ export const useUserStore = create<UserStore>()(
       updateTokens: (updateTokensData) => {
         set({ ...updateTokensData })
       },
+      updateUser: (updatedUserData) =>
+        set((state) => ({
+          user: state.user ? { ...state.user, ...updatedUserData } : null,
+        })),
     }),
     { name: "marketplace-auth", storage: createJSONStorage(() => AsyncStorage) }
   )

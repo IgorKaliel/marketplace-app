@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react"
-import { Toast } from "toastify-react-native"
 import * as ImagePicker from "expo-image-picker"
 import { ImagePickerOptions } from "expo-image-picker"
+import { useCallback, useState } from "react"
+import { Toast } from "toastify-react-native"
 
 export const useCamera = (pickerOptions: ImagePickerOptions) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -9,15 +9,15 @@ export const useCamera = (pickerOptions: ImagePickerOptions) => {
   const requestCameraPermission = useCallback(async (): Promise<boolean> => {
     try {
       const { status } = await ImagePicker.requestCameraPermissionsAsync()
+
       const currentStatus = status === "granted"
+
       if (!currentStatus) {
-        Toast.error(
-          "Precisamos da sua permissão para acessar sua câmera",
-          "top"
-        )
+        Toast.error("Precisamos de permissão para acessar sua câmera", "top")
       }
+
       return currentStatus
-    } catch (error) {
+    } catch {
       Toast.error("Erro ao solicitar permissões da câmera", "top")
       return false
     }
@@ -27,9 +27,8 @@ export const useCamera = (pickerOptions: ImagePickerOptions) => {
     setIsLoading(true)
     try {
       const hasPermission = await requestCameraPermission()
-      if (!hasPermission) {
-        return null
-      }
+
+      if (!hasPermission) return null
 
       const result = await ImagePicker.launchCameraAsync(pickerOptions)
 
@@ -39,7 +38,7 @@ export const useCamera = (pickerOptions: ImagePickerOptions) => {
       }
 
       return null
-    } catch (error) {
+    } catch {
       Toast.error("Erro ao abrir câmera", "top")
       return null
     } finally {
@@ -47,5 +46,9 @@ export const useCamera = (pickerOptions: ImagePickerOptions) => {
     }
   }, [])
 
-  return { requestCameraPermission, isLoading, openCamera }
+  return {
+    requestCameraPermission,
+    isLoading,
+    openCamera,
+  }
 }

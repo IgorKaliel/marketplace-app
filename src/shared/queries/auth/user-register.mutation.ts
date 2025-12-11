@@ -1,12 +1,26 @@
 import { useMutation } from "@tanstack/react-query"
-import * as authService from "@/shared/services/auth.service"
 import { RegisterHttpParams } from "@/shared/interface/http/register"
-export const useRegisterMutation = () => {
+import { register } from "@/shared/services/auth.service"
+import { useUserStore } from "@/shared/store/user-store"
+
+interface UseRegisterMutationParams {
+  onSuccess?: () => void
+}
+
+export const useRegisterMutation = ({
+  onSuccess,
+}: UseRegisterMutationParams = {}) => {
+  const { setSession } = useUserStore()
+
   const mutation = useMutation({
-    mutationFn: (userData: RegisterHttpParams) =>
-      authService.register(userData),
+    mutationFn: (userData: RegisterHttpParams) => register(userData),
     onSuccess: (response) => {
-      console.log(response)
+      setSession({
+        refreshToken: response.refreshToken,
+        token: response.token,
+        user: response.user,
+      })
+      onSuccess?.()
     },
     onError: (error) => {
       console.log(error)
