@@ -5,6 +5,7 @@ import { useRegisterMutation } from "@/shared/queries/auth/user-register.mutatio
 import { useUserStore } from "@/shared/store/user-store"
 import { useImage } from "@/shared/hooks/useImage"
 import { useState } from "react"
+import { CameraType } from "expo-image-picker"
 
 export const useRegisterViewModel = () => {
   const userRegisterMutation = useRegisterMutation()
@@ -12,6 +13,7 @@ export const useRegisterViewModel = () => {
   const [avatarUri, setAvatarUri] = useState<string | null>(null)
   const { handleSelectImage } = useImage({
     callback: setAvatarUri,
+    cameraType: CameraType.front,
   })
   const handleSelectAvatar = async () => {
     await handleSelectImage()
@@ -45,5 +47,5 @@ export const useRegisterViewModel = () => {
     })
   })
 
-  return { control, errors, onSubmit, handleSelectAvatar }
+  return { control, errors, onSubmit, handleSelectAvatar, avatarUri }
 }

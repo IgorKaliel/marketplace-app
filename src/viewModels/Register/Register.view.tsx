@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native"
 import { useRegisterViewModel } from "./useRegister.viewModel"
 import { AppInputController } from "@/shared/components/molecules/AppInputController"
 import { AuthFormHeader } from "@/shared/components/molecules/AppFormHeader"
@@ -12,6 +12,7 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
   onSubmit,
   control,
   handleSelectAvatar,
+  avatarUri,
 }) => {
   return (
     <KeyboardContainer>
@@ -21,8 +22,19 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
           subTitle="Informe seus dados pessoais e de acesso"
         />
 
-        <TouchableOpacity onPress={handleSelectAvatar}>
-          <Ionicons name="cloud-upload-outline" size={32} />
+        <TouchableOpacity
+          className="w-[120px] h-[120px] rounded-[12px] items-center justify-center bg-shape self-center mb-8"
+          onPress={handleSelectAvatar}
+        >
+          {avatarUri ? (
+            <Image
+              className="w-full h-full rounded-[12px]"
+              source={{ uri: avatarUri }}
+              resizeMode="cover"
+            />
+          ) : (
+            <Ionicons name="cloud-upload-outline" size={32} />
+          )}
         </TouchableOpacity>
 
         <AppInputController
