@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useUserStore } from "@/shared/store/user-store"
 import axios, { AxiosInstance } from "axios"
 import { Platform } from "react-native"
-import { useUserStore } from "@/shared/store/user-store"
 
 const getBaseURL = () => {
   return Platform.select({
