@@ -4,12 +4,6 @@ import { LoginHttpParams } from "@/shared/interface/http/login"
 import { RegisterHttpParams } from "@/shared/interface/http/register"
 import { uploadAvatarResponseProps } from "@/shared/interface/http/upload-avatar"
 
-type UploadImageProps = {
-  uri: string
-  type: string
-  name: string
-}
-
 export const register = async (userData: RegisterHttpParams) => {
   const { data } = await marketPlaceApiClient.post<AuthResponseProps>(
     "/auth/register",
@@ -31,13 +25,11 @@ export const login = async (userData: LoginHttpParams) => {
 export const uploadAvatar = async (avatarUri: string) => {
   const formData = new FormData()
 
-  const file: UploadImageProps = {
+  formData.append("avatar", {
     uri: avatarUri,
     type: "image/jpeg",
     name: "avatar.jpeg",
-  }
-
-  formData.append("avatar", file)
+  } as any)
 
   const { data } = await marketPlaceApiClient.post<uploadAvatarResponseProps>(
     "/user/avatar",
@@ -49,7 +41,8 @@ export const uploadAvatar = async (avatarUri: string) => {
     }
   )
 
-  data.url = `${baseURL}${data.url}`
+  data.url = `DataURL: ${baseURL}${data.url}`
+  console.log(data.url)
 
   return data
 }
